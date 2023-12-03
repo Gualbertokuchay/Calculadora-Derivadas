@@ -1,0 +1,17 @@
+{
+    "name": "Calculadora",
+    "short_name": "Calculadora",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait",
+    "start_url": "./",
+    "scope": "./",
+    "icons": [
+      {
+        "src": "Calculadora/iimg/calculadora.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Derivadas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="calculator">
+  <h2>Calculadora de Derivadas</h2>
+  <label for="expression">Expresión:</label>
+  <input type="text" id="expression" placeholder="Ingrese la expresión matemática">
+
+  <div class="button-row">
+    <!-- Botones para números -->
+    <button onclick="addVariable('x')">x</button>
+    <button onclick="addVariable('y')">y</button>
+    <button onclick="addVariable('z')">z</button>
+    <button onclick="addVariable('a')">a</button>
+    <button onclick="addVariable('b')">b</button>
+    <button onclick="addVariable('c')">c</button>
+
+    <!-- Botones para operadores -->
+    <button onclick="addOperator('+')">+</button>
+    <button onclick="addOperator('-')">-</button>
+    <button onclick="addOperator('*')">*</button>
+    <button onclick="addOperator('/')">/</button>
+    <button onclick="addOperator('.')">.</button>
+
+    <!-- Botones para expresiones al cuadrado -->
+    <button onclick="addSymbol('x^2')">x<sup>2</sup></button>
+    <button onclick="addSymbol('y^2')">y<sup>2</sup></button>
+    <button onclick="addSymbol('z^2')">z<sup>2</sup></button>
+    <button onclick="addSymbol('a^2')">a<sup>2</sup></button>
+    <button onclick="addSymbol('b^2')">b<sup>2</sup></button>
+    <button onclick="addSymbol('c^2')">c<sup>2</sup></button>
+
+  </div>
+
+  <button class="calculate-button" onclick="calculateDerivatives()">Calcular Derivadas</button>
+
+  <h3>Resultado:</h3>
+  <p id="result"></p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/7.0.0/math.js"></script>
+
+<script>
+  function addSymbol(symbol) {
+    const expressionInput = document.getElementById('expression');
+    expressionInput.value += symbol;
+  }
+
+  function addVariable(variable) {
+    const expressionInput = document.getElementById('expression');
+    expressionInput.value += variable;
+  }
+
+  function addOperator(operator) {
+    const expressionInput = document.getElementById('expression');
+    expressionInput.value += operator;
+  }
+
+  function cleanedResult(derivative) {
+    // Reemplazar '^' con '<sup>'
+    derivative = derivative.replace(/\^/g, '<sup>');
+
+    // Eliminar puntos decimales
+    derivative = derivative.replace(/\./g, '');
+
+    return derivative;
+  }
+
+  function calculateDerivatives() {
+    const expressionInput = document.getElementById('expression');
+    const expression = expressionInput.value;
+
+    try {
+      const node = math.parse(expression);
+
+      // Calcular la derivada con respecto a 'x'
+      const derivativeXNode = math.derivative(node, 'x');
+      const derivativeX = cleanedResult(derivativeXNode.toString());
+
+      // Calcular la derivada con respecto a 'y'
+      const derivativeYNode = math.derivative(node, 'y');
+      const derivativeY = cleanedResult(derivativeYNode.toString());
+
+      // Calcular la derivada con respecto a 'z'
+      const derivativeZNode = math.derivative(node, 'z');
+      const derivativeZ = cleanedResult(derivativeZNode.toString());
+
+      // Calcular la derivada con respecto a 'a'
+      const derivativeANode = math.derivative(node, 'a');
+      const derivativeA = cleanedResult(derivativeANode.toString());
+
+      // Calcular la derivada con respecto a 'b'
+      const derivativeBNode = math.derivative(node, 'b');
+      const derivativeB = cleanedResult(derivativeBNode.toString());
+
+      // Calcular la derivada con respecto a 'c'
+      const derivativeCNode = math.derivative(node, 'c');
+      const derivativeC = cleanedResult(derivativeCNode.toString());
+
+      document.getElementById('result').innerHTML = `La derivada con respecto a x es: ${derivativeX}<br>La derivada con respecto a y es: ${derivativeY}<br>La derivada con respecto a z es: ${derivativeZ}<br>La derivada con respecto a a es: ${derivativeA}<br>La derivada con respecto a b es: ${derivativeB}<br>La derivada con respecto a c es: ${derivativeC}`;
+    } catch (error) {
+      document.getElementById('result').innerHTML = 'Error al calcular la derivada';
+    }
+  }
+</script>
+
+</body>
+</html>
