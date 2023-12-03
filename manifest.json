@@ -9,7 +9,7 @@
     "scope": "./",
     "icons": [
       {
-        "src": "Calculadora/iimg/calculadora.png",
+        "src": "iimg/calculadora.png",
         "sizes": "512x512",
         "type": "image/png"
       }
